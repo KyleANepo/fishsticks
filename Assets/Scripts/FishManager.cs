@@ -43,29 +43,39 @@ public class FishManager : MonoBehaviour
         }
     }
 
+    private Direction direction;
+
     void checkInput()
     {
         // hard code for now // make sure the keys can be rebound, make the keys global
         // MAKE SURE TO FIX THIS!!!!
-        if (Input.GetKeyDown(KeyCode.UpArrow) && curFish.getInput().getDirection() == Direction.Up)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            curFish.removeInput();
-            inputGrid.removeInput();
+            direction = Direction.Up;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && curFish.getInput().getDirection() == Direction.Down)
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            curFish.removeInput();
-            inputGrid.removeInput();
+            direction = Direction.Down;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && curFish.getInput().getDirection() == Direction.Left)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            curFish.removeInput();
-            inputGrid.removeInput();
+            direction = Direction.Left;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && curFish.getInput().getDirection() == Direction.Right)
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            direction = Direction.Right;
+        }
+
+        if (direction == curFish.getInput().getDirection())
         {
             curFish.removeInput();
             inputGrid.removeInput();
+
+            direction = Direction.None;
+        }
+        else if (direction != Direction.None && direction != curFish.getInput().getDirection())
+        {
+            fishVanish();
         }
     }
 
@@ -74,23 +84,32 @@ public class FishManager : MonoBehaviour
         // if player inputs are successful
         if (curFish.inputs.Count <= 0)
         {
-            scoreManager.UpdateScore(curFish.score);
-            playCEffect();
-            curFish.Catch(); // catch fish, add to fish dictionary
-            inputGrid.clearInputs(); // clear inputs from grid
-            fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
-            //Debug.Log(fishQueue[0]);
-            fishActive = false;
+            fishCatch();
         }
         else if (curFish.transform.position.x >= 6)
         {
-            scoreManager.ResetCombo();
-            curFish.Vanish();
-            inputGrid.clearInputs(); // clear inputs from grid
-            fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
-            //Debug.Log(fishQueue[0]);
-            fishActive = false;
+            fishVanish();
         }
+    }
+
+    void fishCatch()
+    {
+        scoreManager.UpdateScore(curFish.score);
+        playCEffect();
+        curFish.Catch(); // catch fish, add to fish dictionary
+        inputGrid.clearInputs(); // clear inputs from grid
+        fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
+        fishActive = false;
+    }
+
+    void fishVanish()
+    {
+        scoreManager.ResetCombo();
+        curFish.Vanish();
+        inputGrid.clearInputs(); // clear inputs from grid
+        fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
+        fishActive = false;
+        direction = Direction.None;
     }
 
     void updateQueue()

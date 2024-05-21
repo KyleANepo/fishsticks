@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public enum Direction { Up, Down, Left, Right };
+public enum Direction { Up, Down, Left, Right, None };
 
 public class Inputs : MonoBehaviour
 {
