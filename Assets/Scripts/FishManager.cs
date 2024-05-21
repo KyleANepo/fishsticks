@@ -14,6 +14,7 @@ public class FishManager : MonoBehaviour
 
     // put effects here? guess so
     public GameObject catchEffect;
+    public GameObject splashEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +97,7 @@ public class FishManager : MonoBehaviour
     {
         scoreManager.UpdateScore(curFish.score);
         playCEffect();
+        playSEffect();
         curFish.Catch(); // catch fish, add to fish dictionary
         inputGrid.clearInputs(); // clear inputs from grid
         fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
@@ -105,6 +107,7 @@ public class FishManager : MonoBehaviour
     void fishVanish()
     {
         scoreManager.ResetCombo();
+        playSEffect();
         curFish.Vanish();
         inputGrid.clearInputs(); // clear inputs from grid
         fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
@@ -126,5 +129,12 @@ public class FishManager : MonoBehaviour
         GameObject CE = Instantiate(catchEffect, curFish.transform.position, curFish.transform.rotation);
         CE.GetComponent<CatchEffect>().fishSprite = curFish.sprite;
         Destroy(CE, 1.5f);
+    }
+
+    // play splash effect
+    void playSEffect()
+    {
+        GameObject CE = Instantiate(splashEffect, curFish.transform.position + new Vector3(0f, .4f, 0f), curFish.transform.rotation);
+        Destroy(CE, .3f);
     }
 }
