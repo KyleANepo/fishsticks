@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<Fish> fishSelection; // full list of fish to be chosen from
     public int score;
     public int combo;
+    public int maxCombo = 0;
 
     // Pause menu stuff. Maybe put in something else if considering different scenes?
     public GameObject PauseMenu;
@@ -37,6 +38,18 @@ public class GameManager : MonoBehaviour
             PauseGame();
         } 
         else if (Input.GetKeyDown(KeyCode.Escape) && Paused) 
+        {
+            ResumeGame();
+        }
+    }
+
+    public void ButtonPause()
+    {
+        if (!Paused)
+        {
+            PauseGame();
+        }
+        else if (Paused)
         {
             ResumeGame();
         }

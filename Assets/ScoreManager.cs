@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public ScoreUI scoreUI;
     public ComboUI comboUI;
+    public MaxComboUI maxComboUI;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,12 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        if (GameManager.Instance.combo > GameManager.Instance.maxCombo)
+        {
+            GameManager.Instance.maxCombo = GameManager.Instance.combo;
+            maxComboUI.UpdateElement();
+        }
+
         GameManager.Instance.combo = 0;
         comboUI.Hide();
     }

@@ -18,6 +18,11 @@ public class JournalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetJournal();
+    }
+
+    void SetJournal()
+    {
         if (!GameManager.Instance.Paused)
         {
             if (Input.GetKeyDown(KeyCode.J) && !Active)
@@ -25,6 +30,21 @@ public class JournalManager : MonoBehaviour
                 DisplayJournal();
             }
             else if (Input.GetKeyDown(KeyCode.J) && Active)
+            {
+                DisableJournal();
+            }
+        }
+    }
+
+    public void ButtonSetJournal()
+    {
+        if (!GameManager.Instance.Paused)
+        {
+            if (!Active)
+            {
+                DisplayJournal();
+            }
+            else if (Active)
             {
                 DisableJournal();
             }
