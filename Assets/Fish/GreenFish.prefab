@@ -109,7 +109,8 @@ MonoBehaviour:
   score: 10
   type: Betta
   sprite: {fileID: 21300000, guid: 06b6f45368b8c9e4187aaa3b77a35969, type: 3}
-  description: Someone's pet!
+  description: I had one named Honey when I was little. My mom did most of the care
+    for it, though. She was more upset when it died than me.
   speed: 3
 --- !u!95 &580078754218253208
 Animator:

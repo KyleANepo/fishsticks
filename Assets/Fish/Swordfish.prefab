@@ -110,7 +110,8 @@ MonoBehaviour:
   score: 20
   type: Swordfish
   sprite: {fileID: 21300000, guid: 0b87a0eb021e983409f57d07f55087a7, type: 3}
-  description: A lethal weapon!
+  description: Apparently, the nose is actually used more as a club than a sword.
+    Guess they should call it a clubfish?
   speed: 2
 --- !u!95 &2672048224424208714
 Animator:

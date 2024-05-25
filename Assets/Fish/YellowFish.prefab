@@ -109,7 +109,8 @@ MonoBehaviour:
   score: 10
   type: Bluegill
   sprite: {fileID: 21300000, guid: 30ec8aaaced58de4fa17e91969057c9a, type: 3}
-  description: I'm gonna gill myself!
+  description: It's got blue gills, sure, but I'd hate it if someone named me after
+    my most prominent body part. Some people might like that, I suppose.
   speed: 3
 --- !u!95 &1967746961866622804
 Animator:

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6516335315711972026}
   - component: {fileID: 2672048224424208714}
   m_Layer: 0
-  m_Name: RedFish
+  m_Name: Ghostfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,14 +103,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputs:
+  - {fileID: 8841086541708312488, guid: 7834e1718cf26b54e980058ed6626103, type: 3}
   - {fileID: 7398955592463966801, guid: 7c0dea881a73b484bbd54724bf9f533e, type: 3}
+  - {fileID: 2705984349233219101, guid: 3624c87e9b6280e4b979870ee11557d4, type: 3}
   - {fileID: 657916961518132385, guid: c4c8b79761c64de4bba2cfa168a62a8b, type: 3}
-  - {fileID: 7398955592463966801, guid: 7c0dea881a73b484bbd54724bf9f533e, type: 3}
-  score: 10
-  type: Porgy
-  sprite: {fileID: 21300000, guid: 3d9b9f710e937f7488a457621891ec75, type: 3}
-  description: It's quite cute. It's also quite tasty.
-  speed: 3
+  score: 20
+  type: Ghostfish
+  sprite: {fileID: 21300000, guid: 752211dd3a050794996f720f2d2f9b6c, type: 3}
+  description: I-is that you, Honey...?
+  speed: 2
 --- !u!95 &2672048224424208714
 Animator:
   serializedVersion: 5

@@ -110,7 +110,7 @@ MonoBehaviour:
   score: 20
   type: Goldfish
   sprite: {fileID: 21300000, guid: dfe4a69d5663735478410491e44fc2a0, type: 3}
-  description: How'd it get caught on the hook?
+  description: Someone's pet that got flushed down the drain, I suppose...
   speed: 2
 --- !u!95 &2672048224424208714
 Animator:

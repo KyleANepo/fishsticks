@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6516335315711972026}
   - component: {fileID: 2672048224424208714}
   m_Layer: 0
-  m_Name: RedFish
+  m_Name: Sonfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,14 +103,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputs:
-  - {fileID: 7398955592463966801, guid: 7c0dea881a73b484bbd54724bf9f533e, type: 3}
+  - {fileID: 657916961518132385, guid: c4c8b79761c64de4bba2cfa168a62a8b, type: 3}
   - {fileID: 657916961518132385, guid: c4c8b79761c64de4bba2cfa168a62a8b, type: 3}
   - {fileID: 7398955592463966801, guid: 7c0dea881a73b484bbd54724bf9f533e, type: 3}
-  score: 10
-  type: Porgy
-  sprite: {fileID: 21300000, guid: 3d9b9f710e937f7488a457621891ec75, type: 3}
-  description: It's quite cute. It's also quite tasty.
-  speed: 3
+  - {fileID: 657916961518132385, guid: c4c8b79761c64de4bba2cfa168a62a8b, type: 3}
+  - {fileID: 2705984349233219101, guid: 3624c87e9b6280e4b979870ee11557d4, type: 3}
+  score: 30
+  type: Sonfish
+  sprite: {fileID: 21300000, guid: 9a54cb5ee2835af45ab5c0cceb55be41, type: 3}
+  description: This one needed more training.
+  speed: 1
 --- !u!95 &2672048224424208714
 Animator:
   serializedVersion: 5

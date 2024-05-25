@@ -19,11 +19,13 @@ public class JournalButton : MonoBehaviour
         if (image == null)
             Debug.Log("No image found!");
 
-        image.sprite = GameManager.Instance.fishSelection[id].sprite;
+        if (GameManager.Instance.fishSelection.Count > id)
+            image.sprite = GameManager.Instance.fishSelection[id].sprite;
     }
 
     public void ChangePage()
     {
-        JournalManager.ChangePage(id);
+        if (GameManager.Instance.fishSelection.Count > id)
+            JournalManager.ChangePage(id);
     }
 }
