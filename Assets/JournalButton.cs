@@ -21,11 +21,19 @@ public class JournalButton : MonoBehaviour
 
         if (GameManager.Instance.fishSelection.Count > id)
             image.sprite = GameManager.Instance.fishSelection[id].sprite;
+
+       image.color = Color.black;
+    }
+
+    private void FixedUpdate() // i know this is bad practice ok????
+    {
+        if (GameManager.Instance.fishCaught[id] == true)
+           image.color = Color.white;
     }
 
     public void ChangePage()
     {
-        if (GameManager.Instance.fishSelection.Count > id)
+        if (GameManager.Instance.fishSelection.Count > id && GameManager.Instance.fishCaught[id] == true) 
             JournalManager.ChangePage(id);
     }
 }

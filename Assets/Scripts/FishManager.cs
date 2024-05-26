@@ -96,6 +96,7 @@ public class FishManager : MonoBehaviour
     void fishCatch()
     {
         scoreManager.UpdateScore(curFish.score);
+        updateFishCaught();
         playCEffect();
         playSEffect();
         curFish.Catch(); // catch fish, add to fish dictionary
@@ -119,7 +120,12 @@ public class FishManager : MonoBehaviour
     { 
         if (fishQueue.Count <= 2)
         {
-            fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range(0, GameManager.Instance.fishSelection.Count)]);
+            if (GameManager.Instance.combo > 42)
+                fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range((int)GameManager.Instance.fishSelection.Count / 3 * 2, (int)GameManager.Instance.fishSelection.Count)]);
+            else if (GameManager.Instance.combo > 21)
+                fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range((int)GameManager.Instance.fishSelection.Count / 3, (int)GameManager.Instance.fishSelection.Count / 3 * 2)]);
+            else
+                fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range(0, (int)GameManager.Instance.fishSelection.Count / 3)]);
         }
     }
 
@@ -136,5 +142,23 @@ public class FishManager : MonoBehaviour
     {
         GameObject CE = Instantiate(splashEffect, curFish.transform.position + new Vector3(0f, .4f, 0f), curFish.transform.rotation);
         Destroy(CE, .3f);
+    }
+
+    // this sucks!
+    void updateFishCaught()
+    {
+        int count = 0;
+        int index = 0;
+
+        foreach (Fish curFUCKINGFISH in GameManager.Instance.fishSelection)
+        {
+            if (curFUCKINGFISH.type == curFish.type)
+            {
+                index = count;
+            }
+            count++;
+        }
+
+        GameManager.Instance.fishCaught[index] = true;
     }
 }

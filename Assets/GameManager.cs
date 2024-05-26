@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     // these will all be global variables!
     public List<Fish> fishSelection; // full list of fish to be chosen from
+    public List<bool> fishCaught;
+    public List<bool> itemBought;
     public int score;
     public int combo;
     public int maxCombo = 0;
@@ -28,6 +30,14 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < fishCaught.Count; i++)
+        {
+            fishCaught[i] = false;
         }
     }
 
