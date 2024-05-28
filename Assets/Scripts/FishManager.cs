@@ -10,6 +10,7 @@ public class FishManager : MonoBehaviour
     private Fish curFish;
     private bool fishActive;
     public InputGrid inputGrid;
+    public MindGrid mindGrid;
     public ScoreManager scoreManager;
 
     // put effects here? guess so
@@ -32,6 +33,8 @@ public class FishManager : MonoBehaviour
         {
             curFish = Instantiate(fishQueue[0], this.transform); //create pointer to current fish on screen
             inputGrid.updateGrid(curFish); //update grid with fish inputs
+            if (GameManager.Instance.itemBought[0])
+                mindGrid.updateGrid(fishQueue[1]);
             fishActive = true;
         }
 
@@ -74,7 +77,7 @@ public class FishManager : MonoBehaviour
 
             direction = Direction.None;
         }
-        else if (direction != Direction.None && direction != curFish.getInput().getDirection())
+        else if (direction != Direction.None && direction != curFish.getInput().getDirection() && !GameManager.Instance.itemBought[2])
         {
             fishVanish();
         }
@@ -101,6 +104,7 @@ public class FishManager : MonoBehaviour
         playSEffect();
         curFish.Catch(); // catch fish, add to fish dictionary
         inputGrid.clearInputs(); // clear inputs from grid
+        mindGrid.clearInputs();
         fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
         fishActive = false;
     }
@@ -111,6 +115,7 @@ public class FishManager : MonoBehaviour
         playSEffect();
         curFish.Vanish();
         inputGrid.clearInputs(); // clear inputs from grid
+        mindGrid.clearInputs();
         fishQueue.RemoveAt(0); // make sure to remove from grid otherwise it will never update
         fishActive = false;
         direction = Direction.None;

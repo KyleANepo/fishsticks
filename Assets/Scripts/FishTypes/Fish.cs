@@ -38,7 +38,7 @@ public abstract class Fish : MonoBehaviour
 
     public void Swim()
     {
-        float speedMod = speed + (GameManager.Instance.combo / 4); // update speed to go faster with combo
+        float speedMod = (speed + (GameManager.Instance.combo / 4)) / GameManager.Instance.bait; // update speed to go faster with combo
         // Debug.Log(speedMod);
         transform.Translate(Vector3.right * speedMod * Time.deltaTime);
     }

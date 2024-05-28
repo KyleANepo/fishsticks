@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public List<bool> itemBought;
     public int score;
     public int combo;
+    public int bait = 1;
     public int maxCombo = 0;
 
     // Pause menu stuff. Maybe put in something else if considering different scenes?

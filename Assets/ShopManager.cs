@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -10,6 +11,9 @@ public class ShopManager : MonoBehaviour
     public GameObject ShopButton;
 
     public GameObject poofEffect;
+    public TextMeshProUGUI dialogue;
+
+    public ScoreUI scoreUI;
 
     private bool Ready;
     private bool Active;
@@ -60,18 +64,75 @@ public class ShopManager : MonoBehaviour
         Active = false;
     }
 
+    bool firstEye = true;
     public void BuyEye()
     {
-        GameManager.Instance.itemBought[0] = true;
+        if (firstEye)
+        {
+            dialogue.text = "Open your minds eye, and see the next fish to bite the hook... for only 500!";
+            firstEye = false;
+        }
+        else if (GameManager.Instance.itemBought[0])
+        {
+            dialogue.text = "Sorry bud, one mind's eye per person! It's hard to get ahold of em...";
+        }
+        else if (GameManager.Instance.score >= 500 && !GameManager.Instance.itemBought[0])
+        {
+            GameManager.Instance.score -= 500;
+            scoreUI.UpdateElement();
+            GameManager.Instance.itemBought[0] = true;
+            dialogue.text = "I just need you to sign a waiver before I attune your mind's eye... nothing shady, I promise...";
+        }
+        else
+        {
+            dialogue.text = "You're krilling me! 500 dollars is reasonable for a mind's eye of this quality!";
+        }
     }
 
+    bool firstBait = true;
     public void BuyBait()
     {
-        GameManager.Instance.itemBought[1] = true;
+        if (firstBait)
+        {
+            dialogue.text = "It's ofishal; this is the best bait money can buy you! ...500 for it.";
+            firstBait = false;
+        }
+        else if (GameManager.Instance.score >= 500)
+        {
+            GameManager.Instance.score -= 500;
+            scoreUI.UpdateElement();
+            GameManager.Instance.itemBought[1] = true;
+            GameManager.Instance.bait += 1;
+            dialogue.text = "Heh heh, thank you... the fish should stick around muuuch longer now...";
+        }
+        else
+        {
+            dialogue.text = "You're krilling me! 500 dollars is reasonable for bait of this quality!";
+        }
     }
 
+    bool firstRobot = true;
     public void BuyRobot()
     {
-        GameManager.Instance.itemBought[2] = true;
+        if (firstRobot)
+        {
+            dialogue.text = "Something about this egg... 3000 for it.";
+            firstRobot = false;
+        }
+        else if (GameManager.Instance.itemBought[2])
+        {
+            dialogue.text = "Dude, just go to Mmart or something...";
+        }
+        else if (GameManager.Instance.score >= 3000 && !GameManager.Instance.itemBought[2])
+        {
+            GameManager.Instance.score -= 3000;
+            scoreUI.UpdateElement();
+            GameManager.Instance.itemBought[2] = true;
+            dialogue.text = "...seriously? Um... here you go, man...";
+        }
+        else
+        {
+            dialogue.text = "Yeah, I get it...";
+        }
     }
 }
