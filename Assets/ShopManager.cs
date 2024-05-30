@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class ShopManager : MonoBehaviour
 {
     public GameObject ShopMenu;
+    public GameObject keeper;
     public GameObject ShopButton;
 
     public GameObject poofEffect;
@@ -17,6 +18,8 @@ public class ShopManager : MonoBehaviour
 
     private bool Ready;
     private bool Active;
+
+    public CameoManager CameoManager;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -35,6 +38,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    // gurantee a cameo spawn on the first exit from shop
+    bool firstCameo = false;
     public void ButtonSetShop()
     {
         if (!GameManager.Instance.Paused)
@@ -42,10 +47,18 @@ public class ShopManager : MonoBehaviour
             if (!Active)
             {
                 DisplayShop();
+                CameoManager.DeleteCameo();
             }
             else if (Active)
             {
                 DisableShop();
+                if (!firstCameo)
+                {
+                    CameoManager.SetCameo(); 
+                    firstCameo = true;
+                }
+                else
+                    CameoManager.RandomCameo();
             }
         }
     }
@@ -53,6 +66,7 @@ public class ShopManager : MonoBehaviour
     void DisplayShop()
     {
         ShopButton.SetActive(false);
+        keeper.SetActive(true);
         ShopMenu.SetActive(true);
         Active = true;
     }
@@ -60,6 +74,7 @@ public class ShopManager : MonoBehaviour
     void DisableShop()
     {
         ShopButton.SetActive(true);
+        keeper.SetActive(false);
         ShopMenu.SetActive(false);
         Active = false;
     }
