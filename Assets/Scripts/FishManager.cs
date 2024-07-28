@@ -125,8 +125,10 @@ public class FishManager : MonoBehaviour
     { 
         if (fishQueue.Count <= 2)
         {
-            if (GameManager.Instance.combo > 42)
-                fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range((int)GameManager.Instance.fishSelection.Count / 3 * 2, (int)GameManager.Instance.fishSelection.Count)]);
+            if (GameManager.Instance.combo == 64)
+                fishQueue.Add(GameManager.Instance.fishSelection[23]);
+            else if (GameManager.Instance.combo > 42)
+                fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range((int)GameManager.Instance.fishSelection.Count / 3 * 2, (int)GameManager.Instance.fishSelection.Count - 1)]);
             else if (GameManager.Instance.combo > 21)
                 fishQueue.Add(GameManager.Instance.fishSelection[UnityEngine.Random.Range((int)GameManager.Instance.fishSelection.Count / 3, (int)GameManager.Instance.fishSelection.Count / 3 * 2)]);
             else

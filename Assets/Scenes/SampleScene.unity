@@ -5935,7 +5935,7 @@ MonoBehaviour:
   itemBought: 000000
   score: 0
   combo: 0
-  bait: 1
+  bait: 3
   maxCombo: 0
   PauseMenu: {fileID: 1921145175}
   Paused: 0
